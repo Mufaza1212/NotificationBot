@@ -27,6 +27,17 @@ module.exports = {
             } catch (error) {
                 console.error(error);
             }
+        }else if(interaction.isStringSelectMenu()) {
+            const {selecMenus} = client;
+            const {customId} = interaction;
+            const menu = selecMenus.get(customId);
+            if(!menu) return new Error("Menu hasn't been born yet");
+
+            try {
+                await menu.execute(interaction, client);
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 }
